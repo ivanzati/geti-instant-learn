@@ -7,16 +7,19 @@ import { themes as prismThemes } from 'prism-react-renderer';
 // GITHUB_REPOSITORY env var is set by GitHub Actions
 const GITHUB_REPOSITORY = process.env.GITHUB_REPOSITORY || 'ivanzati/geti-instant-learn';
 const [organizationName, projectName] = GITHUB_REPOSITORY.split('/');
+const isGithubActions = process.env.GITHUB_ACTIONS === 'true';
+const siteUrl = process.env.DOCS_URL || `https://${organizationName}.github.io`;
+const siteBaseUrl = process.env.DOCS_BASE_URL || (isGithubActions ? `/${projectName}/` : '/');
 
 const config: Config = {
   title: 'Geti Instant Learn',
   favicon: 'img/favicon.svg',
 
   // Set the production url of your site here
-  url: `https://${organizationName}.github.io`,
+  url: siteUrl,
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: `/${projectName}/`,
+  baseUrl: siteBaseUrl,
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.

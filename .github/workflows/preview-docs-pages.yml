@@ -12,7 +12,6 @@ concurrency:
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
   deploy-preview:
@@ -40,7 +39,10 @@ jobs:
         run: npm run build
 
       - name: Deploy preview pages
-        uses: rajyan/preview-pages@v1
+        uses: peaceiris/actions-gh-pages@329bcc8f12caed2cefe5a5b80781499a6f3b361b # v4
         with:
-          source-dir: site/build
-          pr-comment: sticky
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: main
+          publish_dir: ./site/build
+          destination_dir: pr-${{ github.event.pull_request.number }}
+          keep_files: true

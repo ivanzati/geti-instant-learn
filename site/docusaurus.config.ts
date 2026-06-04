@@ -8,6 +8,10 @@ import { themes as prismThemes } from 'prism-react-renderer';
 const GITHUB_REPOSITORY = process.env.GITHUB_REPOSITORY || 'open-edge-platform/geti-instant-learn';
 const [organizationName, projectName] = GITHUB_REPOSITORY.split('/');
 
+// Compute baseUrl based on PR preview environment variable
+const prNumber = process.env.PR_PREVIEW_NUMBER;
+const baseUrl = prNumber ? `/${projectName}/pr-preview/pr-${prNumber}/` : `/${projectName}/`;
+
 const config: Config = {
   title: 'Geti Instant Learn',
   favicon: 'img/favicon.svg',
@@ -16,7 +20,8 @@ const config: Config = {
   url: `https://${organizationName}.github.io`,
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: `/${projectName}/`,
+  // For PR previews, it is '/<projectName>/pr-preview/pr-<number>/'
+  baseUrl: baseUrl,
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.

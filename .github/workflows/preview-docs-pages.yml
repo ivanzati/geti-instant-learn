@@ -37,6 +37,8 @@ jobs:
       - name: Build docs site
         working-directory: ./site
         shell: bash
+        env:
+          PR_PREVIEW_NUMBER: ${{ github.event.pull_request.number }}
         run: npm run build
 
       - name: Deploy preview pages

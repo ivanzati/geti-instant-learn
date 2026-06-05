@@ -22,4 +22,4 @@ Geti Instant Learn is part of the Geti Apps ecosystem and comes with its own Vis
 
 ## Chapter to check preview site
 
-It works with GH pages!
+It works with GH pages! New PR
